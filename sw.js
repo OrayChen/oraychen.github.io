@@ -1,38 +1,48 @@
 /* ── Memoire Service Worker ───────────────────────────────────
-   Fonts: cache-first (they rarely change).
-   Everything else: network-only — never cached.
+   Cache-first strategy for static assets,
+   network-first for pages.
    ──────────────────────────────────────────────────────────── */
 
-const FONT_CACHE = 'memoire-fonts-v2';
+const CACHE_NAME = 'memoire-v9';
+const STATIC_ASSETS = [
+  '/',
+  '/styles/reset.css',
+  '/styles/tokens.css',
+  '/styles/typography.css',
+  '/styles/layout.css',
+  '/styles/components.css',
+  '/styles/animations.css',
+  '/styles/pages/home.css',
+  '/styles/pages/post.css',
+  '/styles/pages/archive.css',
+  '/styles/pages/404.css',
+  '/scripts/main.js',
+  '/manifest.json',
+];
 
-// Install — pre-cache local fonts
+// Install — cache static assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(FONT_CACHE).then((cache) => {
-      return cache.addAll([
-        '/fonts/LXGWWenKaiGB-Regular.ttf',
-        '/fonts/LXGWWenKaiMonoGB-Regular.ttf',
-      ]).catch(() => {
-        // Font files might not exist yet — that's OK
-      });
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(STATIC_ASSETS);
     })
   );
   self.skipWaiting();
 });
 
-// Activate — clean old caches (including old all-asset caches)
+// Activate — clean old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
-        keys.filter((key) => key !== FONT_CACHE).map((key) => caches.delete(key))
+        keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
       );
     })
   );
   self.clients.claim();
 });
 
-// Fetch — only cache fonts; everything else is network-only
+// Fetch — cache-first for static, network-first for HTML
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
@@ -40,21 +50,32 @@ self.addEventListener('fetch', (event) => {
   // Only handle same-origin requests
   if (url.origin !== self.location.origin) return;
 
-  // Font files: cache-first
-  if (url.pathname.startsWith('/fonts/')) {
+  // API requests: never cache
+  if (url.pathname.startsWith('/api/')) return;
+
+  // HTML pages: network-first
+  if (request.mode === 'navigate' || request.headers.get('Accept')?.includes('text/html')) {
     event.respondWith(
-      caches.match(request).then((cached) => {
-        if (cached) return cached;
-        return fetch(request).then((response) => {
+      fetch(request)
+        .then((response) => {
           const clone = response.clone();
-          caches.open(FONT_CACHE).then((cache) => cache.put(request, clone));
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
           return response;
-        });
-      })
+        })
+        .catch(() => caches.match(request))
     );
     return;
   }
 
-  // Everything else: network-only, never cache
-  event.respondWith(fetch(request));
+  // Static assets: cache-first
+  event.respondWith(
+    caches.match(request).then((cached) => {
+      if (cached) return cached;
+      return fetch(request).then((response) => {
+        const clone = response.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+        return response;
+      });
+    })
+  );
 });

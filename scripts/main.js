@@ -56,9 +56,47 @@
     });
   }
 
+  // ── Dynamic relative time ──
+  // Updates <time class="relative-time" data-modified="..."> elements
+  // so static pages always show accurate "x天前" without a rebuild.
+  function updateRelativeTimes(container) {
+    container.querySelectorAll('time.relative-time[data-modified]').forEach(el => {
+      const dateStr = el.getAttribute('data-modified');
+      if (!dateStr) return;
+      const then = new Date(dateStr);
+      if (isNaN(then.getTime())) return;
+      const now = new Date();
+      const diffMs = now - then;
+      const diffMin = Math.floor(diffMs / 60000);
+      const diffHour = Math.floor(diffMs / 3600000);
+      const diffDay = Math.floor(diffMs / 86400000);
+      const diffYear = Math.floor(diffDay / 365);
+      let text;
+      if (diffMs < 0) {
+        const sameDay = then.getFullYear() === now.getFullYear() &&
+          then.getMonth() === now.getMonth() &&
+          then.getDate() === now.getDate();
+        text = sameDay ? '今天' : `${then.getFullYear()}年${then.getMonth() + 1}月${then.getDate()}日`;
+      } else if (diffYear >= 1) {
+        text = `${diffYear} 年前`;
+      } else if (diffDay >= 1) {
+        text = `${diffDay} 天前`;
+      } else if (diffHour >= 1) {
+        const remainMin = diffMin % 60;
+        text = remainMin > 0 ? `${diffHour} 小时 ${remainMin} 分钟前` : `${diffHour} 小时前`;
+      } else {
+        text = diffMin > 0 ? `${diffMin} 分钟前` : '刚刚';
+      }
+      el.textContent = text;
+    });
+  }
+
   // ── Run on initial load ──
   const main = document.querySelector('main');
-  if (main) initPage(main);
+  if (main) {
+    initPage(main);
+    updateRelativeTimes(main);
+  }
 
   // ── Header scroll effect ──
   const header = document.getElementById('site-header');
