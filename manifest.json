@@ -1,0 +1,16 @@
+{
+  "name": "Memoire",
+  "short_name": "Memoire",
+  "description": "以文字，为时间留痕。 — 个人博客",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f0eb",
+  "theme_color": "#f5f0eb",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

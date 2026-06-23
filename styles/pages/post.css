@@ -1,0 +1,142 @@
+/* ── Post Detail · V3 留白之境 ─────────────────────────────
+   Article page with hero header + body + nav.
+   Hero mirrors home page structure: greeting → title → desc.
+   ═══════════════════════════════════════════════════════════ */
+
+/* Undo global main > article padding — each section handles its own */
+main > article {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Hero — same region as home .hero
+   ═══════════════════════════════════════════════════════════ */
+
+.post-hero {
+  max-width: 960px; margin: 0 auto; padding: 120px 48px 96px;
+}
+.post-hero-greeting {
+  font-family: 'Inter', 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 12px; font-weight: 400;
+  color: var(--color-accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.post-hero-title {
+  font-family: var(--font-serif);
+  font-size: 60px; font-weight: 300;
+  color: var(--color-text-primary);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+}
+.post-hero-desc {
+  font-size: 16px; font-weight: 300;
+  color: var(--color-text-tertiary);
+  line-height: 1.8;
+  max-width: 520px;
+}
+
+/* Tags row — subtle # tags below description */
+.post-hero-tags {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  margin-top: 16px;
+}
+.post-hero-tag {
+  font-family: var(--font-sans);
+  font-size: 10px; font-weight: 400;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.04em;
+}
+.post-hero-tag::before {
+  content: '#';
+  opacity: 0.4;
+  margin-right: 1px;
+}
+
+/* ── Private post banner ── */
+.post-private-banner {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 20px;
+  font-family: var(--font-sans);
+  font-size: 12px; font-weight: 300;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.04em;
+}
+.post-private-banner svg {
+  flex-shrink: 0;
+  color: var(--color-text-tertiary);
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Body
+   ═══════════════════════════════════════════════════════════ */
+
+.post-body {
+  max-width: 960px; margin: 0 auto; padding: 0 48px 96px;
+  font-family: var(--font-serif);
+  font-size: 18px; font-weight: 300;
+  line-height: 1.9;
+  color: var(--color-text-primary);
+}
+.post-body h2 {
+  font-family: var(--font-serif);
+  font-size: 28px; font-weight: 400;
+  color: var(--color-text-primary);
+  margin: 56px 0 16px;
+  line-height: 1.3;
+}
+.post-body h3 {
+  font-family: var(--font-serif);
+  font-size: 22px; font-weight: 400;
+  color: var(--color-text-primary);
+  margin: 40px 0 12px;
+}
+.post-body p { margin-bottom: 1.25rem; }
+
+/* ═══════════════════════════════════════════════════════════
+   Post Navigation
+   ═══════════════════════════════════════════════════════════ */
+
+.post-nav {
+  max-width: 960px; margin: 0 auto; padding: 48px 48px 120px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  border-top: 1px solid var(--color-border-light);
+}
+.post-nav-link {
+  text-decoration: none; color: inherit;
+  transition: padding 0.3s var(--ease-out-expo);
+}
+.post-nav-link.prev:hover { padding-left: 12px; }
+.post-nav-link.next { text-align: right; }
+.post-nav-link.next:hover { padding-right: 12px; }
+.post-nav-label {
+  font-family: var(--font-sans);
+  font-size: 10px; font-weight: 400;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+.post-nav-title {
+  font-family: var(--font-serif);
+  font-size: 17px; font-weight: 400;
+  color: var(--color-text-primary);
+  transition: color 0.3s;
+}
+.post-nav-link:hover .post-nav-title { color: var(--color-accent); }
+
+/* ═══════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 700px) {
+  .post-hero { padding: 80px 24px 64px; }
+  .post-hero-title { font-size: 40px; }
+  .post-body { padding: 0 24px 64px; font-size: 17px; }
+  .post-body h2 { font-size: 24px; margin-top: 40px; }
+  .post-body h3 { font-size: 20px; }
+  .post-nav { padding: 32px 24px 80px; grid-template-columns: 1fr; gap: 28px; }
+}

@@ -1,0 +1,142 @@
+/* ── Layout · V3 留白之境 ──────────────────────────────────
+   Floating header, centered content, minimal footer.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════
+   Site Header — fixed, frosted glass
+   ═══════════════════════════════════════════════════════════ */
+
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: var(--z-sticky);
+  height: 64px;
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.header-inner {
+  max-width: 1040px; margin: 0 auto; padding: 0 48px;
+  height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  font-family: var(--font-serif);
+  font-size: 20px; font-weight: 400;
+  color: var(--color-text-primary);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.logo:hover { color: var(--color-accent); }
+
+/* Navigation */
+.site-nav {
+  display: flex; align-items: center; gap: 40px;
+}
+.nav-link {
+  font-family: var(--font-serif);
+  font-size: 15px; font-weight: 400;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  padding: 4px 0;
+  position: relative;
+  transition: color 0.3s;
+}
+.nav-link::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1px; background: var(--color-accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+.nav-link:hover { color: var(--color-text-primary); }
+.nav-link:hover::after { transform: scaleX(0.4); }
+.nav-link.active { color: var(--color-accent); font-weight: 500; }
+.nav-link.active::after { transform: scaleX(1); }
+
+/* ═══════════════════════════════════════════════════════════
+   Main Content — all top-level blocks constrained by default.
+   Page-specific CSS can override padding/margin per element,
+   but the max-width safety net prevents layout from breaking
+   if a page stylesheet hasn't loaded yet.
+   ═══════════════════════════════════════════════════════════ */
+
+main { padding-top: 64px; min-height: calc(100vh - 64px); }
+
+main > section,
+main > div,
+main > header,
+main > article,
+main > nav {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 48px;
+  padding-right: 48px;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   Site Footer — centered, minimal
+   ═══════════════════════════════════════════════════════════ */
+
+.site-footer {
+  border-top: 1px solid var(--color-border-light);
+  padding: 56px 48px 48px;
+  text-align: center;
+  margin-top: 0;
+}
+.footer-tagline {
+  font-family: var(--font-serif);
+  font-size: 17px; font-weight: 300;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+}
+.footer-links {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  margin-bottom: 20px;
+}
+.footer-link {
+  font-family: var(--font-sans);
+  font-size: 12px; font-weight: 300;
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-link:hover { color: var(--color-accent); }
+.footer-sep { color: var(--color-border); font-size: 10px; }
+.footer-copy {
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 300;
+  color: var(--color-text-tertiary);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Scrollbar — hidden by default, visible on hover
+   ═══════════════════════════════════════════════════════════ */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+html::-webkit-scrollbar { width: var(--scrollbar-width); }
+html::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+html::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: var(--radius-full);
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 700px) {
+  .header-inner { padding: 0 24px; }
+  .site-nav { gap: 24px; }
+  .site-footer { padding: 40px 24px 36px; }
+}

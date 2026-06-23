@@ -1,0 +1,145 @@
+/* ── Home · V3 留白之境 ────────────────────────────────────
+   Hero + article list with border-bottom rows.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════
+   Hero
+   ═══════════════════════════════════════════════════════════ */
+
+.hero {
+  max-width: 960px; margin: 0 auto; padding: 120px 48px 96px;
+}
+.hero-greeting {
+  font-family: 'Inter', 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 12px; font-weight: 400;
+  color: var(--color-accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: 60px; font-weight: 300;
+  color: var(--color-text-primary);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+}
+.hero-description {
+  font-size: 16px; font-weight: 300;
+  color: var(--color-text-tertiary);
+  line-height: 1.8;
+  max-width: 520px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Post List Header
+   ═══════════════════════════════════════════════════════════ */
+
+.posts-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  max-width: 960px; margin: 0 auto; padding: 0 48px 28px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+.posts-header-label {
+  font-size: 11px; font-weight: 400;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.posts-header-count {
+  font-size: 11px; font-weight: 300;
+  color: var(--color-text-tertiary);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Post List
+   ═══════════════════════════════════════════════════════════ */
+
+.posts-list { max-width: 960px; margin: 0 auto; padding: 0 48px 96px; }
+
+.post-item {
+  display: block;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--color-border-light);
+  text-decoration: none; color: inherit;
+  cursor: pointer;
+  transition: padding-left 0.4s var(--ease-out-expo);
+}
+.post-item:hover { padding-left: 16px; }
+
+.post-item-title {
+  font-family: var(--font-serif);
+  font-size: 24px; font-weight: 400;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  margin-bottom: 8px;
+  transition: color 0.3s;
+}
+.post-item:hover .post-item-title { color: var(--color-accent); }
+
+.post-item-excerpt {
+  font-size: 15px; font-weight: 300;
+  color: var(--color-text-tertiary);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 10px;
+}
+
+/* Row 2 — meta line: date · reading time · modified */
+.post-item-meta {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+  font-family: var(--font-sans);
+  font-size: 12px; font-weight: 300;
+  color: var(--color-text-tertiary);
+  margin-bottom: 6px;
+}
+.post-item-date {
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+.post-item-dot {
+  margin: 0 6px;
+  color: var(--color-border);
+}
+.post-item-read {
+  color: var(--color-text-tertiary);
+}
+.post-item-modified {
+  color: var(--color-text-tertiary);
+}
+.post-item-private {
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 400;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.06em;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* Row 3 — tags with # prefix */
+.post-item-tags {
+  display: flex; flex-wrap: wrap; gap: 12px;
+}
+.post-item-tag {
+  font-family: var(--font-sans);
+  font-size: 10px; font-weight: 400;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.04em;
+}
+.post-item-tag::before {
+  content: '#';
+  opacity: 0.4;
+  margin-right: 1px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 700px) {
+  .hero { padding: 80px 24px 64px; }
+  .hero-title { font-size: 40px; }
+  .posts-header, .posts-list { padding-left: 24px; padding-right: 24px; }
+  .post-item-title { font-size: 20px; }
+}

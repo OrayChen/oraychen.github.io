@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="一个好用的Neovim总是需要经过精打细磨的。" />
+  <meta name="theme-color" content="#f5f0eb" />
+
+  <!-- Favicon: inline SVG "M" mark -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23f5f0eb'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='serif' font-size='22' font-weight='bold' fill='%23b8741e'%3EM%3C/text%3E%3C/svg%3E" />
+
+  <title>我的AstroNvim配置 — Memoire</title>
+
+  <!-- Fonts: Google Fonts CDN (public site primary) + Local LXGW WenKai (admin) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Noto+Serif+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Local fonts: LXGW WenKai (霞鹜文楷) — admin panel primary -->
+  <link rel="preload" href="/fonts/LXGWWenKaiGB-Regular.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="preload" href="/fonts/LXGWWenKaiMonoGB-Regular.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="stylesheet" href="/styles/fonts.css?v=1" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/styles/reset.css?v=9" />
+  <link rel="stylesheet" href="/styles/tokens.css?v=13" />
+  <link rel="stylesheet" href="/styles/typography.css?v=10" />
+  <link rel="stylesheet" href="/styles/layout.css?v=14" />
+  <link rel="stylesheet" href="/styles/components.css?v=15" />
+  <link rel="stylesheet" href="/styles/animations.css?v=10" />
+  
+  <link rel="stylesheet" href="/styles/pages/post.css?v=26" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  
+  <link rel="stylesheet" href="/styles/pages/404.css?v=1" />
+
+  <!-- highlight.js theme -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/github-dark-dimmed.min.css" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo" aria-label="Memoire">Memoire</a>
+    <nav class="site-nav" aria-label="主导航">
+      <a href="/" class="nav-link">文章</a>
+      <a href="/archive" class="nav-link">时光</a>
+    </nav>
+  </div>
+</header>
+
+
+<main>
+  <article>
+    <header class="post-hero">
+      <div class="post-hero-greeting">2026年6月14日</div>
+      <h1 class="post-hero-title">我的AstroNvim配置</h1>
+      <div class="post-hero-desc">
+        <span>阅读时间 5 分钟</span>
+        
+          · <span>修改于 1 天前</span>
+        
+      </div>
+      
+      <div class="post-hero-tags">
+        <span class="post-hero-tag">neovim</span><span class="post-hero-tag">IDE</span>
+      </div>
+      
+      
+      
+    </header>
+
+    <div class="post-body">
+      <h2 id="写在前面" class="post-heading">
+      <a href="#写在前面" class="heading-anchor" aria-hidden="true">#</a>
+      写在前面
+    </h2><p>Neovim是大家公认的、最好用的一款TUI编辑器，其中必须给到夯的是Neovim极其优秀的、可扩展性极高的插件系统，如果运用得炉火纯青，我们就能创造出无限可能。</p>
+<p>但是，一堆文件堆在配置文件夹里，很难管理，怎么办？</p>
+<p><a href="https://astronvim.com/" target="_blank">AstroNvim</a>登场了！</p>
+<p>
+<figure class="post-figure">
+  <img src="/images/astronvim.webp" alt="AstroNvim Editor" loading="lazy" class="post-image" />
+  <figcaption>AstroNvim Editor</figcaption>
+</figure></p>
+<p>轮椅一般的，很美妙啊，是吧？</p>
+<p>接下来，我将给出我的AstroNvim配置文件。<em>当然</em>，如果你也想用，可以克隆我的Github仓库，随时欢迎。</p>
+<div class="callout callout-note">
+<p class="callout-title">NOTE 笔记</p>
+<p>「我自己都没配置好呢。我会边写文章边配置的，只需坐和放宽。」</p>
+</div>
+
+<hr>
+<h2 id="更新日志" class="post-heading">
+      <a href="#更新日志" class="heading-anchor" aria-hidden="true">#</a>
+      更新日志
+    </h2><p>2026·06·19 - 加入了Sidekick插件，完善AI编辑器的功能，还有一堆微调。</p>
+<hr>
+<h2 id="安装astronvim-windows-10" class="post-heading">
+      <a href="#安装astronvim-windows-10" class="heading-anchor" aria-hidden="true">#</a>
+      安装AstroNvim（Windows 10+）
+    </h2><p>参考网站：<a href="https://docs.astronvim.com/">https://docs.astronvim.com/</a></p>
+<h3 id="先决条件" class="post-heading">
+      <a href="#先决条件" class="heading-anchor" aria-hidden="true">#</a>
+      先决条件
+    </h3><p>我们需要：</p>
+<ul>
+<li>一款<a href="https://www.nerdfonts.com/font-downloads" target="_blank">Nerd Font</a>。我首推Jetbrains系列的字体，当然人各有所好，如果你想选其它的也不是不行。</li>
+<li>安装Neovim v0.11+。打开终端，运行<code>winget install neovim</code></li>
+<li>一款C编译器。这是最难受的一步 <em>（至少对我来说）</em>。先前往<a href="https://visualstudio.microsoft.com/zh-hans/downloads/" target="_blank">Visual Studio官网</a>，在页面下面找到 「Visual Studio 2026 生成工具」，下载之后安装，功能看着选就好。</li>
+<li><strong>Optional</strong>：一些实用工具的安装。打开终端，运行<code>winget install ripgrep OpenJS.NodeJS Python.Python.3.14</code></li>
+</ul>
+<div class="callout callout-note">
+<p class="callout-title">NOTE 笔记</p>
+<p>「我说winget也是轮椅，有没有懂的」</p>
+</div>
+
+<h3 id="脚本安装" class="post-heading">
+      <a href="#脚本安装" class="heading-anchor" aria-hidden="true">#</a>
+      脚本安装
+    </h3><p>到了最激动人心的时刻了，记得先保证与Github的连接稳定。大家都知道的，我就不多说了，都到这一步了肯定都有吧。</p>
+<ol>
+<li>自己先备份好之前的Neovim配置文件</li>
+<li>复制并运行以下命令</li>
+</ol>
+
+<div class="code-block" data-lang="bash">
+  <div class="code-header">
+    <span class="code-lang">bash</span>
+    <button class="code-copy" aria-label="Copy code">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    </button>
+  </div>
+  <pre><code class="hljs language-bash">git <span class="hljs-built_in">clone</span> --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
+<span class="hljs-built_in">rm</span> -rf ~/.config/nvim/.git
+nvim</code></pre>
+</div><ol start="3">
+<li>等插件都安装好，等待的同时你可以冲杯咖啡慢慢喝</li>
+</ol>
+<p>不出意外的话，到这里就已经安装好AstroNvim了。有想法的可以关掉这篇blog了；如果你是刚开始用AstroNvim的，也可以先关掉这篇blog，自己探索一下里面的功能，再进行配置。</p>
+<h2 id="配置" class="post-heading">
+      <a href="#配置" class="heading-anchor" aria-hidden="true">#</a>
+      配置
+    </h2><div class="callout callout-tip">
+<p class="callout-title">TIP 提示</p>
+<p><strong>在这一步之前，记得先把配置文件中的以下行删去。</strong>  </p>
+<p><code>if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE</code></p>
+</div>
+
+<h3 id="step-1-astrocommunity" class="post-heading">
+      <a href="#step-1-astrocommunity" class="heading-anchor" aria-hidden="true">#</a>
+      Step 1: AstroCommunity
+    </h3><p>打开<code>/lua/plugins/community.lua</code>文件，这一章节我们都会在这个文件里作修改。</p>
+<p>先前往<a href="https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity">AstroCommunity仓库</a>，在里面挑选一些pack，然后以<code>{ import = &quot;astrocommunity.pack.lua&quot; },</code>的格式插入到return函数内。</p>
+<p>以下是我的Pack配置，更新完之后记得重启nvim以下载插件。</p>
+
+<div class="code-block" data-lang="lua">
+  <div class="code-header">
+    <span class="code-lang">lua</span>
+    <button class="code-copy" aria-label="Copy code">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    </button>
+  </div>
+  <pre><code class="hljs language-lua"><span class="hljs-comment">---@type LazySpec</span>
+<span class="hljs-keyword">return</span> {
+	<span class="hljs-string">&quot;AstroNvim/astrocommunity&quot;</span>,
+	<span class="hljs-comment">-- 主题包</span>
+	{ import = <span class="hljs-string">&quot;astrocommunity.colorscheme.catppuccin&quot;</span> },
+	{ import = <span class="hljs-string">&quot;astrocommunity.colorscheme.onedarkpro-nvim&quot;</span> },
+	{ import = <span class="hljs-string">&quot;astrocommunity.colorscheme.tokyodark-nvim&quot;</span> },
+
+	<span class="hljs-comment">-- Blink.cmp 自动补全</span>
+	{ import = <span class="hljs-string">&quot;astrocommunity.completion.blink-cmp&quot;</span> },
+
+	<span class="hljs-comment">-- 语言包</span>
+	{ import = <span class="hljs-string">&quot;astrocommunity.pack.cpp&quot;</span> },
+	{ import = <span class="hljs-string">&quot;astrocommunity.pack.java&quot;</span> },
+	{ import = <span class="hljs-string">&quot;astrocommunity.pack.python&quot;</span> },
+	{ import = <span class="hljs-string">&quot;astrocommunity.pack.lua&quot;</span> },
+
+	<span class="hljs-comment">-- AI 配置</span>
+	{ import = <span class="hljs-string">&quot;astrocommunity.ai.sidekick-nvim&quot;</span> },
+}</code></pre>
+</div><h3 id="step-2-astroui" class="post-heading">
+      <a href="#step-2-astroui" class="heading-anchor" aria-hidden="true">#</a>
+      Step 2: AstroUI
+    </h3><p>打开<code>/lua/plugins/astroui.lua</code>文件，这一章节我们都会在这个文件里作修改。</p>
+<p>在这一步，我们只需要把主题换一下。</p>
+
+<div class="code-block" data-lang="lua">
+  <div class="code-header">
+    <span class="code-lang">lua</span>
+    <button class="code-copy" aria-label="Copy code">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    </button>
+  </div>
+  <pre><code class="hljs language-lua"><span class="hljs-comment">-- 文件的其它内容…</span>
+colorscheme = <span class="hljs-string">&quot;tokyodark&quot;</span>,
+<span class="hljs-comment">-- 文件的其他内容…</span></code></pre>
+</div><div class="callout callout-important">
+<p class="callout-title">IMPORTANT 重要</p>
+<p>「在这之后的配置可能更个性化，如果介意的话观望一下大致结构就好。」</p>
+</div>
+
+<h3 id="step-3-astrocore" class="post-heading">
+      <a href="#step-3-astrocore" class="heading-anchor" aria-hidden="true">#</a>
+      Step 3: AstroCore
+    </h3><p>打开<code>/lua/plugins/astrocore.lua</code>并新建<code>/lua/plugins/keymaps.lua</code>文件，这一章节我们都会在这两个文件里作修改。</p>
+<div class="callout callout-note">
+<p class="callout-title">NOTE 笔记</p>
+<p>为什么要新建<code>keymaps.lua</code>文件呢？因为这样管理快捷键会方便很多。</p>
+</div>
+
+<p><code>astrocore.lua</code>文件看起来很乱，我们可以先把那些注释还有示例代码删掉，再开始配置。</p>
+<div class="callout callout-tip">
+<p class="callout-title">TIP 提示</p>
+<p>「配置以后记得补上注释，不然以后你也看不懂配置了哈」</p>
+</div>
+
+<p><code>astrocore.lua</code>文件内容如下。</p>
+
+<div class="code-block" data-lang="lua">
+  <div class="code-header">
+    <span class="code-lang">lua</span>
+    <button class="code-copy" aria-label="Copy code">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    </button>
+  </div>
+  <pre><code class="hljs language-lua"><span class="hljs-comment">---@type LazySpec</span>
+<span class="hljs-keyword">return</span> {
+	<span class="hljs-string">&quot;AstroNvim/astrocore&quot;</span>,
+	<span class="hljs-comment">---@type AstroCoreOpts</span>
+	opts = {
+		features = {
+			large_buf = { size = <span class="hljs-number">1024</span> * <span class="hljs-number">256</span>, <span class="hljs-built_in">lines</span> = <span class="hljs-number">10000</span> },
+			autopairs = <span class="hljs-literal">true</span>,
+			cmp = <span class="hljs-literal">true</span>,
+			diagnostics = { virtual_text = <span class="hljs-literal">true</span>, virtual_lines = <span class="hljs-literal">false</span> },
+			highlighturl = <span class="hljs-literal">true</span>,
+			notifications = <span class="hljs-literal">true</span>,
+		},
+		<span class="hljs-comment">-- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on</span>
+		diagnostics = {
+			virtual_text = <span class="hljs-literal">false</span>,
+			underline = <span class="hljs-literal">false</span>,
+		},
+		filetypes = {},
+		options = {
+			opt = {
+				<span class="hljs-comment">-- vim.opt.&lt;key&gt;</span>
+				relativenumber = <span class="hljs-literal">false</span>,
+				number = <span class="hljs-literal">true</span>,
+				spell = <span class="hljs-literal">false</span>,
+				signcolumn = <span class="hljs-string">&quot;yes&quot;</span>,
+				<span class="hljs-built_in">wrap</span> = <span class="hljs-literal">true</span>,
+				scrolloff = <span class="hljs-number">9</span>,
+				cursorline = <span class="hljs-literal">true</span>,
+			},
+			g = {
+				<span class="hljs-comment">-- vim.g.&lt;key&gt;</span>
+			},
+		},
+	},
+}</code></pre>
+</div><p><code>keymaps.lua</code> 文件内容如下。</p>
+
+<div class="code-block" data-lang="lua">
+  <div class="code-header">
+    <span class="code-lang">lua</span>
+    <button class="code-copy" aria-label="Copy code">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    </button>
+  </div>
+  <pre><code class="hljs language-lua"><span class="hljs-comment">---@type LazySpec</span>
+<span class="hljs-keyword">return</span> {
+	<span class="hljs-string">&quot;AstroNvim/astrocore&quot;</span>,
+	<span class="hljs-comment">---@type AstroCoreOpts</span>
+	opts = {
+		mappings = {
+			n = {
+				<span class="hljs-comment">-- navigate buffer tabs</span>
+				[<span class="hljs-string">&quot;&lt;S-l&gt;&quot;</span>] = {
+					<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>
+						<span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;astrocore.buffer&quot;</span>).nav(vim.v.count1)
+					<span class="hljs-keyword">end</span>,
+					desc = <span class="hljs-string">&quot;Next buffer&quot;</span>,
+				},
+				[<span class="hljs-string">&quot;&lt;S-h&gt;&quot;</span>] = {
+					<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>
+						<span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;astrocore.buffer&quot;</span>).nav(-vim.v.count1)
+					<span class="hljs-keyword">end</span>,
+					desc = <span class="hljs-string">&quot;Previous buffer&quot;</span>,
+				},
+
+				<span class="hljs-comment">-- Sidekick settings</span>
+				[<span class="hljs-string">&quot;&lt;leader&gt;aa&quot;</span>] = {
+					<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>
+						<span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;sidekick.cli&quot;</span>).toggle(<span class="hljs-string">&quot;claude&quot;</span>)
+					<span class="hljs-keyword">end</span>,
+					desc = <span class="hljs-string">&quot;Sidekick Toggle CLI&quot;</span>,
+				},
+				[<span class="hljs-string">&quot;&lt;leader&gt;as&quot;</span>] = {
+					<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>
+						<span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;sidekick.cli&quot;</span>).<span class="hljs-built_in">select</span>()
+					<span class="hljs-keyword">end</span>,
+					<span class="hljs-comment">-- Or to select only installed tools:</span>
+					<span class="hljs-comment">-- require(&quot;sidekick.cli&quot;).select({ filter = { installed = true } })</span>
+					desc = <span class="hljs-string">&quot;Select CLI&quot;</span>,
+				},
+				[<span class="hljs-string">&quot;&lt;leader&gt;ad&quot;</span>] = {
+					<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>
+						<span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;sidekick.cli&quot;</span>).<span class="hljs-built_in">close</span>()
+					<span class="hljs-keyword">end</span>,
+					desc = <span class="hljs-string">&quot;Detach a CLI Session&quot;</span>,
+				},
+			},
+
+			i = {
+				<span class="hljs-comment">-- Sidekick settings</span>
+				[<span class="hljs-string">&quot;&lt;Tab&gt;&quot;</span>] = {
+					<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>
+						<span class="hljs-comment">-- if there is a next edit, jump to it, otherwise apply it if any</span>
+						<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;sidekick&quot;</span>).nes_jump_or_apply() <span class="hljs-keyword">then</span>
+							<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&lt;Tab&gt;&quot;</span> <span class="hljs-comment">-- fallback to normal tab</span>
+						<span class="hljs-keyword">end</span>
+					<span class="hljs-keyword">end</span>,
+					desc = <span class="hljs-string">&quot;Goto/Apply Next Edit Suggestion&quot;</span>,
+				},
+			},
+		},
+	},
+}</code></pre>
+</div><p>至此，一个强大的文本编辑器已经配置完成（但作为IDE还是有点勉强）。</p>
+<p>有新的语言需求时，只需要前往Mason搜索并安装相应的lsp和dap即可。</p>
+<p>当我有新发现时，我会马上在这里更新。我将会写出一个轻巧的、可以用于小项目开发的Neovim配置。</p>
+<h2 id="未完待续" class="post-heading">
+      <a href="#未完待续" class="heading-anchor" aria-hidden="true">#</a>
+      未完待续
+    </h2>
+    </div>
+
+    <nav class="post-nav">
+      
+        <a href="/post/design-is-restraint" class="post-nav-link prev">
+          <div class="post-nav-label">← 上一篇</div>
+          <div class="post-nav-title">设计的本质是留白</div>
+        </a>
+      
+      
+        <span></span>
+      
+    </nav>
+  </article>
+</main>
+
+  <footer class="site-footer">
+    <p class="footer-tagline">以文字，为时间留痕。</p>
+    <div class="footer-links">
+      <a href="https://github.com/OrayChen" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a><span class="footer-sep">·</span>
+      <a href="mailto:csc2837@outlook.com" class="footer-link">Email</a><span class="footer-sep">·</span>
+      <a href="/rss.xml" class="footer-link">RSS</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Memoire. Built by <strong>Scallion</strong>.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/sw-register.js?v=7"></script>
+  <script src="/scripts/main.js?v=21"></script>
+
+</body>
+</html>
+

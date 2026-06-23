@@ -1,0 +1,92 @@
+/* ── Archive · V3 留白之境 ─────────────────────────────────
+   Timeline grouped by year, minimal rows.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════
+   Hero
+   ═══════════════════════════════════════════════════════════ */
+
+.archive-hero {
+  max-width: 960px; margin: 0 auto; padding: 120px 48px 96px;
+}
+.archive-hero-greeting {
+  font-family: 'Inter', 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 12px; font-weight: 400;
+  color: var(--color-accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.archive-hero-title {
+  font-family: var(--font-serif);
+  font-size: 60px; font-weight: 300;
+  color: var(--color-text-primary);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+.archive-hero-subtitle {
+  font-family: var(--font-serif);
+  font-size: 18px; font-weight: 300;
+  color: var(--color-text-tertiary);
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Year Groups
+   ═══════════════════════════════════════════════════════════ */
+
+.archive-years {
+  max-width: 960px; margin: 0 auto; padding: 0 48px 120px;
+}
+.archive-year { margin-bottom: 64px; }
+.archive-year-label {
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 400;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+.archive-year-post {
+  display: flex; align-items: baseline; gap: 20px;
+  padding: 12px 0;
+  text-decoration: none; color: inherit;
+  transition: padding-left 0.3s var(--ease-out-expo);
+}
+.archive-year-post:hover { padding-left: 12px; }
+.archive-post-date {
+  font-family: var(--font-sans);
+  font-size: 12px; font-weight: 300;
+  color: var(--color-text-tertiary);
+  flex-shrink: 0; width: 80px;
+}
+.archive-post-title {
+  font-family: var(--font-serif);
+  font-size: 17px; font-weight: 300;
+  color: var(--color-text-primary);
+  transition: color 0.3s;
+}
+.archive-year-post:hover .archive-post-title { color: var(--color-accent); }
+.archive-post-private {
+  font-family: var(--font-sans);
+  font-size: 10px; font-weight: 400;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.06em;
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 700px) {
+  .archive-hero { padding: 80px 24px 64px; }
+  .archive-hero-title { font-size: 40px; }
+  .archive-years { padding: 0 24px 80px; }
+  .archive-year { margin-bottom: 48px; }
+  .archive-post-date { width: 60px; font-size: 11px; }
+}
