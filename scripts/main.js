@@ -9,6 +9,15 @@
   'use strict';
 
   // ═══════════════════════════════════════════════════════════
+  // Cleanup: unregister any lingering service workers (PWA removed)
+  // ═══════════════════════════════════════════════════════════
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function (registrations) {
+      registrations.forEach(function (reg) { reg.unregister(); });
+    });
+  }
+
+  // ═══════════════════════════════════════════════════════════
   // initPage — runs on initial page load
   // ═══════════════════════════════════════════════════════════
 
