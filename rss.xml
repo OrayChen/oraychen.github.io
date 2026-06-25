@@ -25,14 +25,5 @@
       <category>设计</category>
       <category>思考</category>
     </item>
-    <item>
-      <title><![CDATA[你好，Memoire]]></title>
-      <link>https://OrayChen.github.io/post/hello-memoire</link>
-      <guid isPermaLink="true">https://OrayChen.github.io/post/hello-memoire</guid>
-      <pubDate>Sat, 13 Jun 2026 00:00:00 GMT</pubDate>
-      <description><![CDATA[这是 Memoire 的第一篇文章。一个关于记忆、文字与时间的博客，由此启程。]]></description>
-      <category>随想</category>
-      <category>生活</category>
-    </item>
   </channel>
 </rss>
