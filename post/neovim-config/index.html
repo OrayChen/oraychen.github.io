@@ -59,7 +59,7 @@
       <div class="post-hero-desc">
         <span>阅读时间 5 分钟</span>
         
-          · <span>修改于 <time class="relative-time" data-modified="2026-06-21 23:12">3 天前</time></span>
+          · <span>修改于 <time class="relative-time" data-modified="2026-06-21 23:12">6 天前</time></span>
         
       </div>
       
@@ -86,7 +86,7 @@
 <p>轮椅一般的，很美妙啊，是吧？</p>
 <p>接下来，我将给出我的AstroNvim配置文件。<em>当然</em>，如果你也想用，可以克隆我的Github仓库，随时欢迎。</p>
 <div class="callout callout-note">
-<p class="callout-title">NOTE 笔记</p>
+<p class="callout-title"><span class="callout-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm6.5-.25A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg></span>NOTE</p>
 <p>「我自己都没配置好呢。我会边写文章边配置的，只需坐和放宽。」</p>
 </div>
 
@@ -111,7 +111,7 @@
 <li><strong>Optional</strong>：一些实用工具的安装。打开终端，运行<code>winget install ripgrep OpenJS.NodeJS Python.Python.3.14</code></li>
 </ul>
 <div class="callout callout-note">
-<p class="callout-title">NOTE 笔记</p>
+<p class="callout-title"><span class="callout-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm6.5-.25A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg></span>NOTE</p>
 <p>「我说winget也是轮椅，有没有懂的」</p>
 </div>
 
@@ -142,7 +142,7 @@ nvim</code></pre>
       <a href="#配置" class="heading-anchor" aria-hidden="true">#</a>
       配置
     </h2><div class="callout callout-tip">
-<p class="callout-title">TIP 提示</p>
+<p class="callout-title"><span class="callout-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.817.859 2.453.225.329.459.577.585.738l.033.042c.138.176.2.298.2.36v1.407c0 .414.336.75.75.75h3.146c.414 0 .75-.336.75-.75V8.843c0-.178.12-.351.249-.515.123-.157.272-.34.408-.538C11.416 7.17 12 6.144 12 5.25 12 3.19 10.363 1.5 8 1.5ZM2.5 5.25C2.5 2.559 4.892 0 8 0c3.108 0 5.5 2.559 5.5 5.25 0 1.263-.706 2.513-1.296 3.265a18.528 18.528 0 0 1-.472.617c-.124.15-.224.274-.278.388v2.73A2.25 2.25 0 0 1 9.204 14.5H6.796a2.25 2.25 0 0 1-2.25-2.25v-2.1a7.065 7.065 0 0 1-.423-.55C3.542 8.802 2.5 7.157 2.5 5.25Zm4.25 7.75a.75.75 0 0 0 0 1.5h2.5a.75.75 0 0 0 0-1.5h-2.5Z"/></svg></span>TIP</p>
 <p><strong>在这一步之前，记得先把配置文件中的以下行删去。</strong>  </p>
 <p><code>if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE</code></p>
 </div>
@@ -198,7 +198,7 @@ nvim</code></pre>
 colorscheme = <span class="hljs-string">&quot;tokyodark&quot;</span>,
 <span class="hljs-comment">-- 文件的其他内容…</span></code></pre>
 </div><div class="callout callout-important">
-<p class="callout-title">IMPORTANT 重要</p>
+<p class="callout-title"><span class="callout-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-9.5ZM1.75 1.5a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25H1.75ZM8 3.5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 3.5Zm0 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg></span>IMPORTANT</p>
 <p>「在这之后的配置可能更个性化，如果介意的话观望一下大致结构就好。」</p>
 </div>
 
@@ -207,13 +207,13 @@ colorscheme = <span class="hljs-string">&quot;tokyodark&quot;</span>,
       Step 3: AstroCore
     </h3><p>打开<code>/lua/plugins/astrocore.lua</code>并新建<code>/lua/plugins/keymaps.lua</code>文件，这一章节我们都会在这两个文件里作修改。</p>
 <div class="callout callout-note">
-<p class="callout-title">NOTE 笔记</p>
+<p class="callout-title"><span class="callout-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm6.5-.25A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg></span>NOTE</p>
 <p>为什么要新建<code>keymaps.lua</code>文件呢？因为这样管理快捷键会方便很多。</p>
 </div>
 
 <p><code>astrocore.lua</code>文件看起来很乱，我们可以先把那些注释还有示例代码删掉，再开始配置。</p>
 <div class="callout callout-tip">
-<p class="callout-title">TIP 提示</p>
+<p class="callout-title"><span class="callout-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.817.859 2.453.225.329.459.577.585.738l.033.042c.138.176.2.298.2.36v1.407c0 .414.336.75.75.75h3.146c.414 0 .75-.336.75-.75V8.843c0-.178.12-.351.249-.515.123-.157.272-.34.408-.538C11.416 7.17 12 6.144 12 5.25 12 3.19 10.363 1.5 8 1.5ZM2.5 5.25C2.5 2.559 4.892 0 8 0c3.108 0 5.5 2.559 5.5 5.25 0 1.263-.706 2.513-1.296 3.265a18.528 18.528 0 0 1-.472.617c-.124.15-.224.274-.278.388v2.73A2.25 2.25 0 0 1 9.204 14.5H6.796a2.25 2.25 0 0 1-2.25-2.25v-2.1a7.065 7.065 0 0 1-.423-.55C3.542 8.802 2.5 7.157 2.5 5.25Zm4.25 7.75a.75.75 0 0 0 0 1.5h2.5a.75.75 0 0 0 0-1.5h-2.5Z"/></svg></span>TIP</p>
 <p>「配置以后记得补上注释，不然以后你也看不懂配置了哈」</p>
 </div>
 

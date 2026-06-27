@@ -135,6 +135,14 @@
   margin: 0 0 0.5rem 0;
   font-family: var(--font-sans);
   font-style: normal;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.callout-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 .callout > *:last-child { margin-bottom: 0; }
 
