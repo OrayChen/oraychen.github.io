@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="/styles/pages/post.css?v=26" />
   
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" />
   
   <link rel="stylesheet" href="/styles/pages/404.css?v=1" />
 
@@ -61,7 +61,7 @@
       <div class="post-hero-desc">
         <span>阅读时间 5 分钟</span>
         
-          · <span>修改于 <time class="relative-time" data-modified="2026-06-21 23:12">6 天前</time></span>
+          · <span>修改于 <time class="relative-time" data-modified="2026-06-28 13:46">21 分钟前</time></span>
         
       </div>
       
@@ -79,7 +79,7 @@
       写在前面
     </h2><p>Neovim是大家公认的、最好用的一款TUI编辑器，其中必须给到夯的是Neovim极其优秀的、可扩展性极高的插件系统，如果运用得炉火纯青，我们就能创造出无限可能。</p>
 <p>但是，一堆文件堆在配置文件夹里，很难管理，怎么办？</p>
-<p><a href="https://astronvim.com/" target="_blank">AstroNvim</a>登场了！</p>
+<p><a href="https://astronvim.com/" target="_blank" rel="noopener noreferrer">AstroNvim</a>登场了！</p>
 <p>
 <figure class="post-figure">
   <img src="/images/astronvim.webp" alt="AstroNvim Editor" loading="lazy" class="post-image" />
@@ -89,7 +89,7 @@
 <p>接下来，我将给出我的AstroNvim配置文件。<em>当然</em>，如果你也想用，可以克隆我的Github仓库，随时欢迎。</p>
 <div class="callout callout-note">
 <p class="callout-title"><span class="callout-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm6.5-.25A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg></span>NOTE</p>
-<p>「我自己都没配置好呢。我会边写文章边配置的，只需坐和放宽。」</p>
+<p>我自己都没配置好呢。我会边写文章边配置的，只需坐和放宽。</p>
 </div>
 
 <hr>
@@ -101,20 +101,20 @@
 <h2 id="安装astronvim-windows-10" class="post-heading">
       <a href="#安装astronvim-windows-10" class="heading-anchor" aria-hidden="true">#</a>
       安装AstroNvim（Windows 10+）
-    </h2><p>参考网站：<a href="https://docs.astronvim.com/">https://docs.astronvim.com/</a></p>
+    </h2><p>参考网站：<a href="https://docs.astronvim.com/" target="_blank" rel="noopener noreferrer">https://docs.astronvim.com/</a></p>
 <h3 id="先决条件" class="post-heading">
       <a href="#先决条件" class="heading-anchor" aria-hidden="true">#</a>
       先决条件
     </h3><p>我们需要：</p>
 <ul>
-<li>一款<a href="https://www.nerdfonts.com/font-downloads" target="_blank">Nerd Font</a>。我首推Jetbrains系列的字体，当然人各有所好，如果你想选其它的也不是不行。</li>
+<li>一款<a href="https://www.nerdfonts.com/font-downloads" target="_blank" rel="noopener noreferrer">Nerd Font</a>。我首推Jetbrains系列的字体，当然人各有所好，如果你想选其它的也不是不行。</li>
 <li>安装Neovim v0.11+。打开终端，运行<code>winget install neovim</code></li>
-<li>一款C编译器。这是最难受的一步 <em>（至少对我来说）</em>。先前往<a href="https://visualstudio.microsoft.com/zh-hans/downloads/" target="_blank">Visual Studio官网</a>，在页面下面找到 「Visual Studio 2026 生成工具」，下载之后安装，功能看着选就好。</li>
+<li>一款C编译器。这是最难受的一步 <em>（至少对我来说）</em>。先前往<a href="https://visualstudio.microsoft.com/zh-hans/downloads/" target="_blank" rel="noopener noreferrer">Visual Studio官网</a>，在页面下面找到 「Visual Studio 2026 生成工具」，下载之后安装，功能看着选就好。</li>
 <li><strong>Optional</strong>：一些实用工具的安装。打开终端，运行<code>winget install ripgrep OpenJS.NodeJS Python.Python.3.14</code></li>
 </ul>
 <div class="callout callout-note">
 <p class="callout-title"><span class="callout-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm6.5-.25A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg></span>NOTE</p>
-<p>「我说winget也是轮椅，有没有懂的」</p>
+<p>我说winget也是轮椅，有没有懂的</p>
 </div>
 
 <h3 id="脚本安装" class="post-heading">
@@ -153,7 +153,7 @@ nvim</code></pre>
       <a href="#step-1-astrocommunity" class="heading-anchor" aria-hidden="true">#</a>
       Step 1: AstroCommunity
     </h3><p>打开<code>/lua/plugins/community.lua</code>文件，这一章节我们都会在这个文件里作修改。</p>
-<p>先前往<a href="https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity">AstroCommunity仓库</a>，在里面挑选一些pack，然后以<code>{ import = &quot;astrocommunity.pack.lua&quot; },</code>的格式插入到return函数内。</p>
+<p>先前往<a href="https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity" target="_blank" rel="noopener noreferrer">AstroCommunity仓库</a>，在里面挑选一些pack，然后以<code>{ import = &quot;astrocommunity.pack.lua&quot; },</code>的格式插入到return函数内。</p>
 <p>以下是我的Pack配置，更新完之后记得重启nvim以下载插件。</p>
 
 <div class="code-block" data-lang="lua">
@@ -201,7 +201,7 @@ colorscheme = <span class="hljs-string">&quot;tokyodark&quot;</span>,
 <span class="hljs-comment">-- 文件的其他内容…</span></code></pre>
 </div><div class="callout callout-important">
 <p class="callout-title"><span class="callout-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-9.5ZM1.75 1.5a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25H1.75ZM8 3.5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 3.5Zm0 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg></span>IMPORTANT</p>
-<p>「在这之后的配置可能更个性化，如果介意的话观望一下大致结构就好。」</p>
+<p>在这之后的配置可能更个性化，如果介意的话观望一下大致结构就好。</p>
 </div>
 
 <h3 id="step-3-astrocore" class="post-heading">
@@ -216,7 +216,7 @@ colorscheme = <span class="hljs-string">&quot;tokyodark&quot;</span>,
 <p><code>astrocore.lua</code>文件看起来很乱，我们可以先把那些注释还有示例代码删掉，再开始配置。</p>
 <div class="callout callout-tip">
 <p class="callout-title"><span class="callout-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.817.859 2.453.225.329.459.577.585.738l.033.042c.138.176.2.298.2.36v1.407c0 .414.336.75.75.75h3.146c.414 0 .75-.336.75-.75V8.843c0-.178.12-.351.249-.515.123-.157.272-.34.408-.538C11.416 7.17 12 6.144 12 5.25 12 3.19 10.363 1.5 8 1.5ZM2.5 5.25C2.5 2.559 4.892 0 8 0c3.108 0 5.5 2.559 5.5 5.25 0 1.263-.706 2.513-1.296 3.265a18.528 18.528 0 0 1-.472.617c-.124.15-.224.274-.278.388v2.73A2.25 2.25 0 0 1 9.204 14.5H6.796a2.25 2.25 0 0 1-2.25-2.25v-2.1a7.065 7.065 0 0 1-.423-.55C3.542 8.802 2.5 7.157 2.5 5.25Zm4.25 7.75a.75.75 0 0 0 0 1.5h2.5a.75.75 0 0 0 0-1.5h-2.5Z"/></svg></span>TIP</p>
-<p>「配置以后记得补上注释，不然以后你也看不懂配置了哈」</p>
+<p>配置以后记得补上注释，不然以后你也看不懂配置了哈</p>
 </div>
 
 <p><code>astrocore.lua</code>文件内容如下。</p>

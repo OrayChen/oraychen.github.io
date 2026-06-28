@@ -97,6 +97,21 @@ main > article {
 }
 .post-body p { margin-bottom: 1.25rem; }
 
+/* ── KaTeX math ──────────────────────────────── */
+
+/* Block math — horizontal scroll for wide formulas */
+.post-body .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 8px 0;
+  margin: 32px 0;
+}
+/* Inline math — subtle vertical align tweak (KaTeX handles this,
+   but ensure it doesn't break line-height in serif body text) */
+.post-body .katex {
+  font-size: 1.05em;  /* scale slightly so formulas are readable inline */
+}
+
 /* ═══════════════════════════════════════════════════════════
    Post Navigation
    ═══════════════════════════════════════════════════════════ */
