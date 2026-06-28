@@ -8,7 +8,7 @@
     <atom:link href="https://OrayChen.github.io/rss.xml" rel="self" type="application/rss+xml"/>
     
     <item>
-      <title><![CDATA[我的AstroNvim配置]]></title>
+      <title><![CDATA[AstroNvim配置之旅]]></title>
       <link>https://OrayChen.github.io/post/neovim-config</link>
       <guid isPermaLink="true">https://OrayChen.github.io/post/neovim-config</guid>
       <pubDate>Sun, 14 Jun 2026 00:00:00 GMT</pubDate>
