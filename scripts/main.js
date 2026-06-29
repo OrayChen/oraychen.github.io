@@ -118,4 +118,132 @@
     }, { passive: true });
   }
 
+  // ── TOC: article table of contents (post pages only) ──
+  initTOC();
+
+  // ═══════════════════════════════════════════════════════════
+  // initTOC — 文章目录：旁注风格侧栏 + 移动端抽屉
+  // ═══════════════════════════════════════════════════════════
+  function initTOC() {
+    var postBody = document.querySelector('.post-body');
+    if (!postBody) return;
+
+    var headings = Array.from(postBody.querySelectorAll('h2.post-heading, h3.post-heading'));
+    if (headings.length < 2) return;
+
+    // Ensure each heading has an id
+    headings.forEach(function(h, i) {
+      if (!h.id) h.id = 'heading-' + i;
+    });
+
+    // Build TOC data — strip leading '#' from anchor element
+    var tocItems = headings.map(function(h) {
+      return {
+        id: h.id,
+        text: (h.textContent || '').trim().replace(/^#\s*/, ''),
+        level: h.tagName.toLowerCase(),
+        el: h
+      };
+    });
+
+    // ── Render TOC items ──
+    function renderItem(item) {
+      var li = document.createElement('li');
+      li.className = 'toc-item level-' + item.level;
+      li.textContent = item.text;
+      li.addEventListener('click', function() {
+        item.el.scrollIntoView({ behavior: 'smooth' });
+        closeMobileDrawer();
+      });
+      li.dataset.target = item.id;
+      return li;
+    }
+
+    var tocList = document.getElementById('tocList');
+    var tocMobileList = document.getElementById('tocMobileList');
+    if (!tocList || !tocMobileList) return;
+
+    tocItems.forEach(function(item) {
+      tocList.appendChild(renderItem(item));
+      tocMobileList.appendChild(renderItem(item));
+    });
+
+    // ── Scroll Spy ──
+    var allLinks = document.querySelectorAll('.toc-item');
+
+    function activateItem(id) {
+      allLinks.forEach(function(link) {
+        if (link.dataset.target === id) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          activateItem(entry.target.id);
+        }
+      });
+    }, {
+      rootMargin: '-80px 0px -60% 0px',
+      threshold: 0
+    });
+
+    headings.forEach(function(h) { observer.observe(h); });
+
+    // ── Sidebar visibility ──
+    var sidebar = document.getElementById('tocSidebar');
+
+    function updateSidebar() {
+      if (window.innerWidth >= 1280) {
+        sidebar.classList.add('visible');
+      } else {
+        sidebar.classList.remove('visible');
+      }
+    }
+
+    updateSidebar();
+    window.addEventListener('resize', updateSidebar);
+
+    // ── Mobile drawer ──
+    var mobileToggle = document.getElementById('tocMobileToggle');
+    var mobileOverlay = document.getElementById('tocMobileOverlay');
+    var mobileDrawer = document.getElementById('tocMobileDrawer');
+
+    function openMobileDrawer() {
+      mobileOverlay.classList.add('open');
+      mobileDrawer.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileDrawer() {
+      mobileOverlay.classList.remove('open');
+      mobileDrawer.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    if (mobileToggle) {
+      mobileToggle.addEventListener('click', function() {
+        if (mobileDrawer.classList.contains('open')) {
+          closeMobileDrawer();
+        } else {
+          openMobileDrawer();
+        }
+      });
+    }
+
+    if (mobileOverlay) {
+      mobileOverlay.addEventListener('click', closeMobileDrawer);
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
+        closeMobileDrawer();
+      }
+    });
+  }
+
 })();

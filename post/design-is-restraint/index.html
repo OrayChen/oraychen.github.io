@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="/styles/components.css?v=15" />
   <link rel="stylesheet" href="/styles/animations.css?v=10" />
   
-  <link rel="stylesheet" href="/styles/pages/post.css?v=26" />
+  <link rel="stylesheet" href="/styles/pages/post.css?v=35" />
   
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" />
@@ -54,6 +54,31 @@
 
 
 <main>
+  <!-- 文章目录 — 侧栏 "旁注" 风格 -->
+  <nav class="toc-sidebar" id="tocSidebar" aria-label="文章目录">
+    <div class="toc-label">目录</div>
+    <ul class="toc-list" id="tocList"><!-- JS 动态填充 --></ul>
+  </nav>
+
+  <!-- 移动端目录浮按钮 -->
+  <button class="toc-mobile-toggle" id="tocMobileToggle" aria-label="目录">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="4" y1="6" x2="20" y2="6"/>
+      <line x1="4" y1="12" x2="16" y2="12"/>
+      <line x1="4" y1="18" x2="12" y2="18"/>
+    </svg>
+  </button>
+
+  <!-- 移动端目录遮罩 -->
+  <div class="toc-mobile-overlay" id="tocMobileOverlay"></div>
+
+  <!-- 移动端目录抽屉 -->
+  <div class="toc-mobile-drawer" id="tocMobileDrawer">
+    <div class="toc-drawer-handle"></div>
+    <div class="toc-label">目录</div>
+    <ul class="toc-list" id="tocMobileList"><!-- JS 动态填充 --></ul>
+  </div>
+
   <article>
     <header class="post-hero">
       <div class="post-hero-greeting">2026年6月13日</div>
@@ -61,7 +86,7 @@
       <div class="post-hero-desc">
         <span>阅读时间 3 分钟</span>
         
-          · <span>修改于 <time class="relative-time" data-modified="2026-06-28 16:05">3 分钟前</time></span>
+          · <span>修改于 <time class="relative-time" data-modified="2026-06-28 16:12">20 小时 54 分钟前</time></span>
         
       </div>
       
@@ -94,11 +119,6 @@
     </h2><p>留白是中国传统艺术作品创作手法，指<strong>通过保留空白空间激发观者想象</strong>的艺术表现方式。该手法在书画、雕刻等领域均有应用，强调虚实相生的美学原则。</p>
 <p>留白，是一种境界。我们观齐白石的虾，便能感受到水的清澈；赏徐悲鸿的马，便能体味到风的速度。南宋马远的《寒江独钓图》里，一只小舟，一个渔翁在垂钓，整幅画中没有一丝水，而让人感到烟波浩渺，满幅皆水。这便是中国画的最高境界——留白。</p>
 <p>
-<figure class="post-figure">
-  <img src="/images/Qi-Baishi-XIA.jpg" alt="齐白石的虾" loading="lazy" class="post-image" />
-  <figcaption>齐白石的虾</figcaption>
-</figure>
-
 <figure class="post-figure">
   <img src="/images/Xu-Beihong-HORSE.jpg" alt="徐悲鸿的马" loading="lazy" class="post-image" />
   <figcaption>徐悲鸿的马</figcaption>
@@ -219,7 +239,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="/scripts/main.js?v=23"></script>
+  <script src="/scripts/main.js?v=26"></script>
 
 </body>
 </html>

@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="/styles/components.css?v=15" />
   <link rel="stylesheet" href="/styles/animations.css?v=10" />
   
-  <link rel="stylesheet" href="/styles/pages/post.css?v=26" />
+  <link rel="stylesheet" href="/styles/pages/post.css?v=35" />
   
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" />
@@ -54,6 +54,31 @@
 
 
 <main>
+  <!-- 文章目录 — 侧栏 "旁注" 风格 -->
+  <nav class="toc-sidebar" id="tocSidebar" aria-label="文章目录">
+    <div class="toc-label">目录</div>
+    <ul class="toc-list" id="tocList"><!-- JS 动态填充 --></ul>
+  </nav>
+
+  <!-- 移动端目录浮按钮 -->
+  <button class="toc-mobile-toggle" id="tocMobileToggle" aria-label="目录">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="4" y1="6" x2="20" y2="6"/>
+      <line x1="4" y1="12" x2="16" y2="12"/>
+      <line x1="4" y1="18" x2="12" y2="18"/>
+    </svg>
+  </button>
+
+  <!-- 移动端目录遮罩 -->
+  <div class="toc-mobile-overlay" id="tocMobileOverlay"></div>
+
+  <!-- 移动端目录抽屉 -->
+  <div class="toc-mobile-drawer" id="tocMobileDrawer">
+    <div class="toc-drawer-handle"></div>
+    <div class="toc-label">目录</div>
+    <ul class="toc-list" id="tocMobileList"><!-- JS 动态填充 --></ul>
+  </div>
+
   <article>
     <header class="post-hero">
       <div class="post-hero-greeting">2026年6月14日</div>
@@ -61,7 +86,7 @@
       <div class="post-hero-desc">
         <span>阅读时间 5 分钟</span>
         
-          · <span>修改于 <time class="relative-time" data-modified="2026-06-28 16:05">3 分钟前</time></span>
+          · <span>修改于 <time class="relative-time" data-modified="2026-06-28 16:11">20 小时 55 分钟前</time></span>
         
       </div>
       
@@ -84,11 +109,6 @@
     </h2><p>Neovim是大家公认的、最好用的一款TUI编辑器，其中必须给到夯的是Neovim极其优秀的、可扩展性极高的插件系统，如果运用得炉火纯青，我们就能创造出无限可能。</p>
 <p>但是，一堆文件堆在配置文件夹里，很难管理，怎么办？</p>
 <p><a href="https://astronvim.com/" target="_blank" rel="noopener noreferrer">AstroNvim</a>登场了！</p>
-<p>
-<figure class="post-figure">
-  <img src="/images/astronvim.webp" alt="AstroNvim Editor" loading="lazy" class="post-image" />
-  <figcaption>AstroNvim Editor</figcaption>
-</figure></p>
 <p>轮椅一般的，很美妙啊，是吧？</p>
 <p>接下来，我将给出我的AstroNvim配置文件。<em>当然</em>，如果你也想用，可以克隆我的Github仓库，随时欢迎。</p>
 <div class="callout callout-note">
@@ -370,7 +390,7 @@ colorscheme = <span class="hljs-string">&quot;tokyodark&quot;</span>,
   </footer>
 
   <!-- Scripts -->
-  <script src="/scripts/main.js?v=23"></script>
+  <script src="/scripts/main.js?v=26"></script>
 
 </body>
 </html>
