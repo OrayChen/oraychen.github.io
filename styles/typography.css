@@ -87,7 +87,7 @@ hr {
   margin: 3rem 0;
 }
 
-/* Code blocks */
+/* Code blocks (standalone <pre>, outside .code-block wrapper) */
 pre {
   margin: 1.75rem 0;
   background: #24292e;
@@ -98,6 +98,12 @@ pre {
   font-size: 0.875rem;
   line-height: 1.6;
   tab-size: 2;
+  border: 1px solid transparent;
+}
+[data-theme="dark"] pre {
+  background: #1c1920;
+  color: #d0ccd4;
+  border-color: #2a262f;
 }
 pre code {
   font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;

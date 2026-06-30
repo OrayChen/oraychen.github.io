@@ -9,6 +9,7 @@
 }
 ::view-transition-new(root) {
   animation: vt-fade-in 0.3s var(--ease-smooth);
+  background-color: var(--color-surface);
 }
 
 @keyframes vt-fade-out {

@@ -13,6 +13,7 @@
 }
 
 html {
+  background-color: var(--color-surface);
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;

@@ -110,11 +110,16 @@
   // ── Header scroll effect ──
   const header = document.getElementById('site-header');
   if (header) {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     window.addEventListener('scroll', () => {
-      const currentScroll = window.scrollY;
-      header.style.boxShadow = currentScroll > 100
-        ? '0 1px 3px rgba(61, 50, 38, 0.06)'
-        : 'none';
+      var currentScroll = window.scrollY;
+      if (currentScroll > 100) {
+        header.style.boxShadow = isDark
+          ? '0 1px 3px rgba(0,0,0,0.25)'
+          : '0 1px 3px rgba(61, 50, 38, 0.06)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
     }, { passive: true });
   }
 
@@ -243,6 +248,62 @@
       if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
         closeMobileDrawer();
       }
+    });
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // Theme Toggle — sun/moon switch with localStorage
+  // ═══════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════
+  // Theme Toggle — 3-state: light → dark → auto → light
+  // data-theme      = applied theme  (dark | light)
+  // data-theme-mode = user preference (dark | light | auto)
+  // ═══════════════════════════════════════════════════════════
+
+  var colorSchemeMQ = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function applyTheme(isDark, mode) {
+    var html = document.documentElement;
+    html.classList.add('theme-transitioning');
+
+    html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    html.setAttribute('data-theme-mode', mode);
+    localStorage.setItem('memoire-theme', mode);
+
+    var mc = document.getElementById('meta-theme-color');
+    if (mc) mc.content = isDark ? '#161318' : '#f5f0eb';
+
+    isDark = isDark;
+    if (header && window.scrollY > 100) {
+      header.style.boxShadow = isDark
+        ? '0 1px 3px rgba(0,0,0,0.25)'
+        : '0 1px 3px rgba(61, 50, 38, 0.06)';
+    }
+
+    setTimeout(function() {
+      html.classList.remove('theme-transitioning');
+    }, 550);
+  }
+
+  // Listen for system theme changes when in auto mode
+  colorSchemeMQ.addEventListener('change', function(e) {
+    if (localStorage.getItem('memoire-theme') === 'auto') {
+      applyTheme(e.matches, 'auto');
+    }
+  });
+
+  var toggleBtn = document.getElementById('theme-toggle');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function() {
+      var currentMode = document.documentElement.getAttribute('data-theme-mode') || 'auto';
+      // Cycle: light → dark → auto → light
+      var cycle = { light: 'dark', dark: 'auto', auto: 'light' };
+      var nextMode = cycle[currentMode];
+      var nextIsDark = nextMode === 'dark';
+      if (nextMode === 'auto') {
+        nextIsDark = colorSchemeMQ.matches;
+      }
+      applyTheme(nextIsDark, nextMode);
     });
   }
 

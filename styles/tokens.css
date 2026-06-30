@@ -148,5 +148,81 @@
   --scrollbar-track:      transparent;
   --scrollbar-thumb:      #d4ccc0;
   --scrollbar-thumb-hover: #b8a898;
+
+  /* Theme toggle */
+  --theme-toggle-size: 36px;
+}
+
+/* ── Theme Toggle Button ────────────────────────── */
+.theme-toggle {
+  width: var(--theme-toggle-size); height: var(--theme-toggle-size);
+  border-radius: 50%; border: none; background: none;
+  color: var(--color-text-tertiary); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: color 0.3s, background 0.3s;
+}
+.theme-toggle:hover {
+  color: var(--color-text-primary);
+  background: var(--color-surface-alt);
+}
+/* Show/hide correct icon based on user mode (not applied theme).
+   Each mode shows its own icon: sun → light, moon → dark, display → auto. */
+.theme-icon-sun  { display: none; }
+.theme-icon-moon { display: none; }
+.theme-icon-auto { display: none; }
+[data-theme-mode="light"] .theme-icon-sun  { display: block; }
+[data-theme-mode="dark"]  .theme-icon-moon { display: block; }
+[data-theme-mode="auto"]  .theme-icon-auto { display: block; }
+
+/* ── Smooth theme transition ──────────────────────
+   Temporarily applied to <html> during theme switch.
+   Enables cross-fade on all color properties globally,
+   then removed after 500ms so it doesn't interfere
+   with hover/active transitions. */
+.theme-transitioning,
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition: background-color 0.5s var(--ease-smooth),
+              color           0.5s var(--ease-smooth),
+              border-color    0.5s var(--ease-smooth),
+              box-shadow      0.5s var(--ease-smooth),
+              fill            0.5s var(--ease-smooth),
+              stroke          0.5s var(--ease-smooth) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   Dark Theme · Noir Rose
+   ═══════════════════════════════════════════════ */
+
+[data-theme="dark"] {
+  --color-surface:          #161318;
+  --color-surface-alt:      #1c1920;
+  --color-surface-elevated: #232028;
+  --color-border:           #2a262f;
+  --color-border-light:     #322e37;
+
+  --color-text-primary:     #ece8ed;
+  --color-text-secondary:   #a29da8;
+  --color-text-tertiary:    #6d6873;
+  --color-text-inverse:     #161318;
+
+  --color-accent:           #c4a870;
+  --color-accent-hover:     #d8be88;
+  --color-accent-soft:      rgba(196,168,112,0.10);
+  --color-accent-glow:      rgba(196,168,112,0.12);
+
+  --color-success:          #8a9880;
+  --color-warning:          #b8a870;
+  --color-error:            #a87880;
+
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.15);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.25);
+  --shadow-lg:  0 8px 30px rgba(0,0,0,0.35);
+  --shadow-glow: 0 0 40px rgba(196,168,112,0.08);
+
+  --scrollbar-thumb:       #3d3840;
+  --scrollbar-thumb-hover: #5a5460;
 }
 

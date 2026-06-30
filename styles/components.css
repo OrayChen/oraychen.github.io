@@ -4,44 +4,75 @@
 
 /* ═══════════════════════════════════════════════════════════
    Code Block
+   All colors driven by CSS custom properties so theme
+   transitions are smooth — no format mismatch between
+   hex ↔ rgba during animation.
    ═══════════════════════════════════════════════════════════ */
 
 .code-block {
   margin: 2rem 0;
   border-radius: var(--radius-md);
   overflow: hidden;
-  background: #24292e;
+
+  /* Light defaults */
+  --cb-bg:             #24292e;
+  --cb-header-bg:      rgba(255,255,255,0.04);
+  --cb-header-border:  rgba(255,255,255,0.06);
+  --cb-outer-border:   transparent;
+  --cb-text:           #8b949e;
+  --cb-text-hover:     #e6edf3;
+
+  background: var(--cb-bg);
+  border: 1px solid var(--cb-outer-border);
 }
+[data-theme="dark"] .code-block {
+  --cb-bg:             #1c1920;
+  --cb-header-bg:      rgba(255,255,255,0.02);
+  --cb-header-border:  #2a262f;
+  --cb-outer-border:   #2a262f;
+  --cb-text:           #8b8a90;
+  --cb-text-hover:     #d0ccd4;
+}
+
 .code-header {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0.5rem 1rem;
-  background: rgba(255,255,255,0.04);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: var(--cb-header-bg);
+  border-bottom: 1px solid var(--cb-header-border);
 }
 .code-lang {
   font-size: 11px;
   font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
-  color: #8b949e;
+  color: var(--cb-text);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 .code-copy {
   display: flex; align-items: center; justify-content: center;
   width: 28px; height: 28px; border-radius: var(--radius-sm);
-  color: #8b949e; cursor: pointer;
+  color: var(--cb-text); cursor: pointer;
   transition: color 0.2s, background 0.2s;
 }
-.code-copy:hover { color: #e6edf3; background: rgba(255,255,255,0.08); }
+.code-copy:hover { color: var(--cb-text-hover); background: rgba(255,255,255,0.08); }
 .code-copy.copied { color: var(--color-success); }
 .code-block pre {
   margin: 0; padding: 1rem 1.25rem;
   overflow-x: auto;
   font-size: 0.875rem; line-height: 1.6; tab-size: 2;
+  background: var(--cb-bg);
   scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent;
 }
 .code-block code {
   font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+  color: var(--cb-text-hover);
+  background: none;
 }
+
+/* Dark mode: strip highlight.js token backgrounds
+   (github-dark-dimmed theme applies bg to some tokens
+    like .hljs-addition, .hljs-link, etc.) */
+[data-theme="dark"] .hljs [class^="hljs-"] { background: transparent !important; }
+[data-theme="dark"] .hljs [class*=" hljs-"] { background: transparent !important; }
 
 /* ═══════════════════════════════════════════════════════════
    Post Figure (images)
